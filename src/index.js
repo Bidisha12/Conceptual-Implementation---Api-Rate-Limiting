@@ -1,8 +1,9 @@
 const express = require('express')
 const app = express()
 const bodyParser = require("body-parser");
-const port = 3000
 const posts=require('./initialData')
+const port = 9000
+
 app.use(express.urlencoded());
 
 // Parse JSON bodies (as sent by API clients)
@@ -15,7 +16,7 @@ app.use(bodyParser.json())
 // your code goes here
 let noOfAPICalls = 0;
 let initialMax =null;
-app.get('http://localhost:3000/api/posts', (req,res)=>{
+app.get('/api/posts', (req,res)=>{
 
     if(noOfAPICalls >= 5)
     {
