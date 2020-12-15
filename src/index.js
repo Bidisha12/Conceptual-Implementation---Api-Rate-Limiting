@@ -22,7 +22,7 @@ app.get('/api/posts', (req,res)=>{
         res.status(429).send({message: "Exceed Number of API Calls"});
         return;
     }
-    const parsedMax= Number(req.params.max || 10);
+    const parsedMax= Number(req.query.max || 10);
     const max= parsedMax < 20 ? parsedMax : 10;
     let finalMax=max;
 
