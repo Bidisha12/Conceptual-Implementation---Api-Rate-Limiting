@@ -17,16 +17,14 @@ app.use(bodyParser.json())
 let noOfAPICalls = 0;
 let initialMax =null;
 app.get('/api/posts', (req,res)=>{
-
     if(noOfAPICalls >= 5)
     {
         res.status(429).send({message: "Exceed Number of API Calls"});
         return;
-
     }
     const parsedMax= Number(req.params.max || 10);
     const max= parsedMax < 20 ? parsedMax : 10;
-    const finalMax=max;
+    let finalMax=max;
 
     if(initialMax !== null)
     {
