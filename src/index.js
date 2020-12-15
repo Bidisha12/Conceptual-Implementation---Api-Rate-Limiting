@@ -15,7 +15,7 @@ app.use(bodyParser.json())
 // your code goes here
 let noOfAPICalls = 0;
 let initialMax =null;
-app.get('http://localhost:3000/api/posts', async (req,res)=>{
+app.get('http://localhost:3000/api/posts', (req,res)=>{
 
     if(noOfAPICalls >= 5)
     {
@@ -23,7 +23,7 @@ app.get('http://localhost:3000/api/posts', async (req,res)=>{
         return;
 
     }
-    const parsedMax= await Number(req.params.max || 10);
+    const parsedMax= Number(req.params.max || 10);
     const max= parsedMax < 20 ? parsedMax : 10;
     const finalMax=max;
 
@@ -31,10 +31,10 @@ app.get('http://localhost:3000/api/posts', async (req,res)=>{
     {
         finalMax= Math.min(finalMax,initialMax);
     }
-    const topMax= posts.filter((value,idx)=> idx < 10);
+    const topMax= posts.filter((value,idx)=> idx < finalMax);
     res.send(topMax);
 
-    if(initialMax === 0)
+    if(initialMax === null)
     {
         initialMax = max;
         noOfAPICalls++;
