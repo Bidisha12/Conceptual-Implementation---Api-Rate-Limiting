@@ -43,6 +43,9 @@ app.get('http://localhost:3000/api/posts', async (req,res)=>{
             noOfAPICalls = 0;
         }, 30*1000);
     }
+    else{
+        noOfAPICalls++;
+    }
 })
 
 
